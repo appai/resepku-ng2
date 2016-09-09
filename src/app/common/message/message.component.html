@@ -1,0 +1,3 @@
+<div>
+    Send message
+</div>
