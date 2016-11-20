@@ -1,3 +1,7 @@
 <div>
     login
 </div>
+
+  <div> {{ (af.auth | async)?.uid }} </div>
+  <button (click)="login()">Login With Google</button>
+  <button (click)="logout()">Log out</button>

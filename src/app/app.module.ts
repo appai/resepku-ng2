@@ -29,6 +29,32 @@ import * as page from './page';
 // Form component
 import * as formComponent from './form';
 
+// Firebase
+import {
+  AngularFireModule,
+  AuthMethods,
+  AuthProviders,
+  defaultFirebase,
+  FIREBASE_PROVIDERS,
+  firebaseAuthConfig
+} from 'angularfire2';
+
+export const firebaseConfig = {
+  apiKey: 'AIzaSyAycY9n4FDQpVsNRhRFebTG5FXDyicc0Tg',
+  authDomain: 'appai-resepku-ng2.firebaseapp.com',
+  databaseURL: 'https://appai-resepku-ng2.firebaseio.com',
+  storageBucket: 'appai-resepku-ng2.appspot.com'
+};
+
+export const myFirebaseAuthConfig = {
+  provider: AuthProviders.Google,
+  method: AuthMethods.Redirect
+};
+
+// Services
+
+import * as services from './services';
+
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
@@ -56,7 +82,7 @@ const APP_PROVIDERS = [
     formComponent.PostComponent,
     // Home component
     home.HomeComponent,
-    home.HeroComponent,
+    home.TipsComponent,
     home.FeaturedComponent,
     home.CardComponent,
     // Page component
@@ -66,11 +92,14 @@ const APP_PROVIDERS = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: false })
+    RouterModule.forRoot(ROUTES, { useHash: false }),
+    AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    FIREBASE_PROVIDERS,
+    services.AuthService
   ]
 })
 export class AppModule {

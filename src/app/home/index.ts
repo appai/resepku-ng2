@@ -1,4 +1,4 @@
 export * from './home.component';
-export * from './hero/hero.component';
 export * from './card/card.component';
 export * from './featured/featured.component';
+export * from './tips/tips.component';

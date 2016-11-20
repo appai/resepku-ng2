@@ -1,3 +1,13 @@
 <div>
     Featured post
 </div>
+
+<div>
+    {{(featuredPostObject | async)?.featured.title}}
+</div>
+<div>
+    {{(featuredPostObject | async)?.featured.subTitle}}
+</div>
+<div>
+    {{(featuredPostObject | async)?.featured.excerpt}}
+</div>

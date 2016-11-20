@@ -1,3 +1,18 @@
 <div>
     Card
 </div>
+
+<ul>
+  <li class="text" *ngFor="let item of items | async">
+    <div>
+        {{item.title}}
+    </div>
+    <div>
+        {{item.subTitle}}
+    </div>
+    <div>
+        Love {{item.love}}
+    </div>
+    <br>
+  </li>
+</ul>

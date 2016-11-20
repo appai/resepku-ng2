@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { OnInit, ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import { AuthService } from './../../services/auth/auth.service';
 
 @Component({
     moduleId: module.id,
@@ -6,7 +8,31 @@ import { Component, OnInit } from '@angular/core';
     templateUrl: 'header.component.html'
 })
 export class HeaderComponent implements OnInit {
-    constructor() { }
+    authStatus: any;
 
-    ngOnInit() { }
+    constructor(
+        public af: AngularFire,
+        public authService: AuthService) {
+    }
+
+    ngOnInit() {
+      AuthService.authUserData$.subscribe(status => {
+        this.authStatus = status || 'Null';
+        debugger;
+      });
+    }
+
+    login() {
+        this.authService.signInWithGoogle();
+    }
+
+    logout() {
+        this.authService.signOut();
+    }
+
+    checkAuthStatus() {
+        let authData = this.authService.getCurrentUser();
+        debugger;
+    }
+
 }

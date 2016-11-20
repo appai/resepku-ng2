@@ -5,9 +5,21 @@
     <ul>
         <li>
             <a [routerLink]="['/']">Home</a>
-            <a [routerLink]="['/post']">Post</a>
-            <a [routerLink]="['/login']">Login</a>
+            <a [routerLink]="['/login']">Sign In</a>
             <a [routerLink]="['/register']">Register</a>
+            <a [routerLink]="['/post']">Write new recipe</a>
+        </li>
+        <li>
+            <button (click)="login()">Login</button>
+        </li>
+        <li>
+            <button (click)="logout()">Logout</button>
+        </li>
+        <li>
+            <button (click)="checkAuthStatus()">Check</button>
+        </li>
+        <li>
+            My status is {{authStatus}}
         </li>
     </ul>
 </div>

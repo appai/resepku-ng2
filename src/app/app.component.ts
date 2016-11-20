@@ -5,6 +5,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 import { AppState } from './app.service';
 
+import { AuthService } from './services';
+
 /*
  * App Component
  * Top Level Component
@@ -16,8 +18,7 @@ import { AppState } from './app.service';
     './app.style.css'
   ],
   template: `
-    <header>
-    </header>
+    <header></header>
 
     <main>
       <router-outlet></router-outlet>
@@ -32,14 +33,16 @@ export class App {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'Angular 2 Webpack Starter';
   url = 'https://twitter.com/AngularClass';
+  authData = 'Test Authdata';
 
   constructor(
-    public appState: AppState) {
-
+    public appState: AppState,
+    private auth: AuthService) {
+      auth.checkAuth();
   }
 
-  ngOnInit() {
-    console.log('Initial App State', this.appState.state);
+  signOut(): void {
+    this.auth.signOut();
   }
 
 }
